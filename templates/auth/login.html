@@ -4,23 +4,59 @@
     <meta charset="UTF-8">
     <title>昆虫馆-管理系统-登录</title>
     <link rel="stylesheet" href="/static/layui/css/layui.css">
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .background-animation {
+            width: 66.66%;
+            height: 100vh;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+
+        @keyframes gradientBG {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .login-container {
+            width: 33.33%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #fff;
+        }
+
+        .demo-login-container {
+            width: 320px;
+        }
+
+        .demo-login-other .layui-icon {
+            position: relative;
+            display: inline-block;
+            margin: 0 2px;
+            top: 2px;
+            font-size: 26px;
+        }
+    </style>
 </head>
 <body>
-<style>
-    .demo-login-container {
-        width: 320px;
-        margin: 21px auto 0;
-    }
-
-    .demo-login-other .layui-icon {
-        position: relative;
-        display: inline-block;
-        margin: 0 2px;
-        top: 2px;
-        font-size: 26px;
-    }
-</style>
-<div style="width: 500px;height: 400px;margin: 400px auto">
+<div class="background-animation"></div>
+<div class="login-container">
     <form class="layui-form" action="/data_info" method="post">
         <div class="demo-login-container">
             <div class="layui-form-item">
