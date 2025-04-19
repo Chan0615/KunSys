@@ -4,23 +4,85 @@
     <meta charset="UTF-8">
     <title>昆虫馆-管理系统-注册</title>
     <link rel="stylesheet" href="/static/layui/css/layui.css">
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .background-animation {
+            width: 66.66%;
+            height: 100vh;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+            background-size: 100% 100%;
+            animation: gradientBG 15s ease infinite;
+            position: relative; /* 为内部元素定位 */
+        }
+
+        @keyframes gradientBG {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .register-container {
+            width: 33.33%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #fff;
+        }
+
+        .demo-reg-container {
+            width: 320px;
+        }
+
+        .demo-reg-other .layui-icon {
+            position: relative;
+            display: inline-block;
+            margin: 0 2px;
+            top: 2px;
+            font-size: 26px;
+        }
+
+        /* 小动画元素 */
+        .floating-bubble {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            animation: floatBubble 5s ease-in-out infinite;
+        }
+
+        @keyframes floatBubble {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-50px);
+            }
+        }
+    </style>
 </head>
 <body>
-<style>
-    .demo-reg-container {
-        width: 320px;
-        margin: 21px auto 0;
-    }
-
-    .demo-reg-other .layui-icon {
-        position: relative;
-        display: inline-block;
-        margin: 0 2px;
-        top: 2px;
-        font-size: 26px;
-    }
-</style>
-<div style="width: 500px;height: 400px;margin: 400px auto">
+<div class="background-animation">
+    <!-- 添加小动画元素 -->
+    <div class="floating-bubble" style="top: 20%; left: 10%;"></div>
+    <div class="floating-bubble" style="top: 40%; left: 30%;"></div>
+    <div class="floating-bubble" style="top: 60%; left: 50%;"></div>
+    <div class="floating-bubble" style="top: 80%; left: 70%;"></div>
+</div>
+<div class="register-container">
     <form class="layui-form" action="/register" method="post">
         <div class="demo-reg-container">
             <div class="layui-form-item">
