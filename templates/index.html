@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>欢迎来到奇妙世界首页 🌈</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            overflow: hidden;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            font-family: 'Comic Sans MS', cursive;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="%23ffdd00"/></svg>'), auto;
+        }
+
+        @keyframes gradientBG {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .container {
+            position: relative;
+            height: 100vh;
+        }
+
+        .title {
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 4em;
+            color: white;
+            text-shadow: 3px 3px 0 #ff4757;
+            transition: 0.3s;
+        }
+
+        .interactive-area {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            height: 60vh;
+            border: 4px dashed white;
+            border-radius: 20px;
+        }
+
+        .bouncing-text {
+            position: absolute;
+            animation: bounce 2s infinite;
+            font-size: 2em;
+            color: #fff;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .click-effect {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: ripple 1s linear;
+        }
+
+        @keyframes ripple {
+            from {
+                transform: scale(0);
+                opacity: 1;
+            }
+            to {
+                transform: scale(5);
+                opacity: 0;
+            }
+        }
+
+        .secret-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .secret-button:hover {
+            transform: rotate(360deg) scale(1.2);
+        }
+
+        .login-button {
+            position: fixed;
+            top: 70%; /* 垂直居中 */
+            right: 900px; /* 靠右 */
+            transform: translateY(-50%); /* 垂直居中 */
+            padding: 20px 40px;
+            background: #ff6b6f;
+            color: white;
+            border: darkred;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .login-button:hover {
+            transform: translateY(-50%) rotate(360deg) scale(1.2); /* 保持垂直居中并添加旋转效果 */
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 class="title">欢迎来到奇妙空间 🎉</h1>
+    <div class="interactive-area" id="playground"></div>
+    <button class="secret-button" onclick="revealSecret()">点我有惊喜 ✨</button>
+    <button class="login-button" onclick="window.location.href='/login'">点我进入登录页面 ✨</button>
+</div>
+
+
+<script>
+    // 鼠标点击特效
+    document.addEventListener('click', function (e) {
+        const effect = document.createElement('div');
+        effect.className = 'click-effect';
+        effect.style.left = e.pageX - 10 + 'px';
+        effect.style.top = e.pageY - 10 + 'px';
+        document.body.appendChild(effect);
+        setTimeout(() => effect.remove(), 1000);
+    });
+
+    // 随机生成跳动文字
+    const texts = ['🎈 点击任意位置', '🌈 发现惊喜', '✨ 奇妙世界', '🐱 喵喵喵', '🚀 准备起飞'];
+    setInterval(() => {
+        const text = document.createElement('div');
+        text.className = 'bouncing-text';
+        text.textContent = texts[Math.floor(Math.random() * texts.length)];
+        text.style.left = Math.random() * 80 + '%';
+        text.style.top = Math.random() * 80 + '%';
+        document.getElementById('playground').appendChild(text);
+        setTimeout(() => text.remove(), 3000);
+    }, 1500);
+
+    // 神秘按钮功能
+    function revealSecret() {
+        document.body.style.filter = 'hue-rotate(180deg)';
+        setTimeout(() => {
+            document.body.style.filter = 'none';
+            alert('🎉 你发现了色彩秘密！');
+        }, 1000);
+    }
+
+    // 鼠标跟随特效
+    document.addEventListener('mousemove', (e) => {
+        const x = e.clientX / window.innerWidth;
+        const y = e.clientY / window.innerHeight;
+        document.body.style.backgroundPosition =
+            `${x * 100}% ${y * 100}%`;
+    });
+
+</script>
+</body>
+</html>
