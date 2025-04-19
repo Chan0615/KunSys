@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Demo{% endblock %}</title>
+    <!-- 请勿在项目正式环境中引用该 layui.css 地址 -->
+    <link href="//unpkg.com/layui@2.11.0-rc.4/dist/css/layui.css" rel="stylesheet">
+    <style>
+        .sidebar {
+            width: 200px;
+            float: left;
+            background-color: #2F4056;
+            color: white;
+        }
+
+        .content {
+            margin-left: 200px; /* 与 sidebar 的宽度一致 */
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- 左侧菜单栏 -->
+<div class="sidebar">
+    <ul class="layui-nav layui-nav-tree layui-inline" lay-filter="demo">
+        <li class="layui-nav-item layui-nav-itemed">
+            <a href="javascript:;">个人信息</a>
+            <dl class="layui-nav-child">
+                <dd><a href="javascript:;" data-url="/data_info">员工信息</a></dd>
+                <dd><a href="javascript:;">修改权限</a></dd>
+            </dl>
+        </li>
+        <li class="layui-nav-item">
+            <a href="javascript:;">默认收缩</a>
+            <dl class="layui-nav-child">
+                <dd><a href="javascript:;">选项1</a></dd>
+                <dd><a href="javascript:;">选项2</a></dd>
+                <dd><a href="javascript:;">选项3</a></dd>
+            </dl>
+        </li>
+        <li class="layui-nav-item"><a href="javascript:;">菜单1</a></li>
+        <li class="layui-nav-item"><a href="javascript:;">菜单2</a></li>
+        <li class="layui-nav-item"><a href="javascript:;">菜单3</a></li>
+    </ul>
+</div>
+
+<!-- 右侧内容容器 -->
+<div class="content">
+    <div id="content-container">
+        {% block content %}
+            <!-- 子模板的内容将在这里插入 -->
+        {% endblock %}
+    </div>
+</div>
+
+<!-- 请勿在项目正式环境中引用该 layui.js 地址 -->
+<script src="//unpkg.com/layui@2.11.0-rc.4/dist/layui.js"></script>
+
+<script>
+    layui.use(['element', 'jquery'], function () {
+        var element = layui.element;
+        var $ = layui.jquery;
+
+        // 监听导航点击事件
+        $('.sidebar ul.layui-nav a[data-url]').on('click', function () {
+            var url = $(this).data('url');
+            $.ajax({
+                url: url,
+                method: 'GET',
+                success: function (response) {
+                    $('#content-container').html(response);
+                },
+                error: function (xhr, status, error) {
+                    console.error('Failed to load content:', error);
+                }
+            });
+        });
+    });
+</script>
+
+</body>
+</html>

@@ -1,98 +1,87 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>员工信息</title>
-    <!-- 请勿在项目正式环境中引用该 layui.css 地址 -->
-    <link href="//unpkg.com/layui@2.11.0-rc.4/dist/css/layui.css" rel="stylesheet">
-</head>
-<body>
-<table class="layui-hide" id="ID-table-demo-data"></table>
+{% extends "base.html" %}
 
-<!-- 请勿在项目正式环境中引用该 layui.js 地址 -->
-<script src="//unpkg.com/layui@2.11.0-rc.4/dist/layui.js"></script>
-<script>
-    layui.use('table', function () {
-        var table = layui.table;
+{% block title %}员工信息{% endblock %}
 
-        // 已知数据渲染
-        var inst = table.render({
-            elem: '#ID-table-demo-data',
-            cols: [[ //标题栏
-                {field: 'id', title: 'ID', width: 80, sort: true},
-                {field: 'username', title: '用户', width: 120},
-                {field: 'sign', title: '签名', minWidth: 160},
-                {field: 'sex', title: '性别', width: 80},
-                {field: 'city', title: '城市', width: 100},
-                {field: 'experience', title: '积分', width: 80, sort: true}
-            ]],
-            data: [{ // 赋值已知数据
-                "id": "10001",
-                "username": "张三1",
-                "sex": "男",
-                "city": "浙江杭州",
-                "sign": "人生恰似一场修行",
-                "experience": "116"
-            }, {
-                "id": "10002",
-                "username": "张三2",
-                "sex": "男",
-                "city": "浙江杭州",
-                "sign": "人生恰似一场修行",
-                "experience": "12",
-                "LAY_CHECKED": true
-            }, {
-                "id": "10003",
-                "username": "张三3",
-                "sex": "男",
-                "city": "浙江杭州",
-                "sign": "人生恰似一场修行",
-                "experience": "65"
-            }, {
-                "id": "10004",
-                "username": "张三4",
-                "sex": "男",
-                "city": "浙江杭州",
-                "sign": "人生恰似一场修行",
-                "experience": "777"
-            }, {
-                "id": "10005",
-                "username": "张三5",
-                "sex": "男",
-                "city": "浙江杭州",
-                "sign": "人生恰似一场修行",
-                "experience": "86"
-            }, {
-                "id": "10006",
-                "username": "张三6",
-                "sex": "男",
-                "city": "浙江杭州",
-                "sign": "人生恰似一场修行",
-                "experience": "12"
-            }, {
-                "id": "10007",
-                "username": "张三7",
-                "sex": "男",
-                "city": "浙江杭州",
-                "sign": "人生恰似一场修行",
-                "experience": "16"
-            }, {
-                "id": "10008",
-                "username": "张三8",
-                "sex": "男",
-                "city": "浙江杭州",
-                "sign": "人生恰似一场修行",
-                "experience": "106"
-            }],
-            //skin: 'line', // 表格风格
-            //even: true,
-            page: true, // 是否显示分页
-            limits: [5, 10, 15],
-            limit: 5 // 每页默认显示的数量
+{% block content %}
+    <table class="layui-table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>用户</th>
+            <th>签名</th>
+            <th>性别</th>
+            <th>城市</th>
+            <th>积分</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>10001</td>
+            <td>张三1</td>
+            <td>人生恰似一场修行</td>
+            <td>男</td>
+            <td>浙江杭州</td>
+            <td>116</td>
+        </tr>
+        <tr>
+            <td>10002</td>
+            <td>张三2</td>
+            <td>人生恰似一场修行</td>
+            <td>男</td>
+            <td>浙江杭州</td>
+            <td>12</td>
+        </tr>
+        <tr>
+            <td>10003</td>
+            <td>张三3</td>
+            <td>人生恰似一场修行</td>
+            <td>男</td>
+            <td>浙江杭州</td>
+            <td>65</td>
+        </tr>
+        <tr>
+            <td>10004</td>
+            <td>张三4</td>
+            <td>人生恰似一场修行</td>
+            <td>男</td>
+            <td>浙江杭州</td>
+            <td>777</td>
+        </tr>
+        <tr>
+            <td>10005</td>
+            <td>张三5</td>
+            <td>人生恰似一场修行</td>
+            <td>男</td>
+            <td>浙江杭州</td>
+            <td>86</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="layui-box layui-laypage layui-laypage-default" id="LAY_laypage_1">
+        <a href="javascript:;" class="layui-laypage-prev" data-page="0">&lt;</a>
+        <span class="layui-laypage-curr"><em class="layui-laypage-em"></em><em>1</em></span>
+        <a href="javascript:;" class="layui-laypage-next" data-page="2">&gt;</a>
+        <span class="layui-laypage-skip">到第<input type="text" min="1" value="1" class="layui-input" size="2">页</span>
+        <button type="button" class="layui-btn layui-laypage-btn">确定</button>
+        <span class="layui-laypage-count">共 8 条</span>
+        <span class="layui-laypage-limits"><select><option value="5" selected="">5 条/页</option><option value="10">10 条/页</option><option
+                value="20">20 条/页</option><option value="30">30 条/页</option><option value="40">40 条/页</option><option
+                value="50">50 条/页</option></select></span>
+    </div>
+
+    <script>
+        layui.use('laypage', function () {
+            var laypage = layui.laypage;
+
+            // 执行一个laypage实例
+            laypage.render({
+                elem: 'LAY_laypage_1' // 注意：这里的 LAY_laypage_1 是 ID，需要与上述标签的 ID 保持一致
+                , count: 8 // 数据总数，从服务端得到
+                , limit: 5 // 每页显示条数
+                , limits: [5, 10, 20, 30, 40, 50] // 每页条数的选择项
+                , layout: ['prev', 'page', 'next', 'skip', 'count', 'limit'] // 自定义分页布局
+            });
         });
-    });
-</script>
-
-</body>
-</html>
+    </script>
+{% endblock %}
