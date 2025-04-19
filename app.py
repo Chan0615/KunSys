@@ -18,6 +18,11 @@ def login():
     return render_template('auth/login.html')
 
 
+@app.route('/register')
+def register():
+    return render_template('auth/register.html')
+
+
 @app.route('/data_info', methods=['POST'])
 def data_info():
     ## 登录后获取用户名，密码，验证码，之后校验，一致则登录，并记录信息
